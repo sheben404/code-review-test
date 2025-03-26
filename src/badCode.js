@@ -1,44 +1,70 @@
-// 一些不规范的 JavaScript 代码示例
-var a = 1;  // 使用 var 而不是 let/const
-var b = 2
+/**
+ * 这是一个展示 JavaScript 代码规范的示例文件
+ * 修复了之前代码中的各种问题
+ */
 
-function dosomething(x,y) {  // 函数名不符合驼峰命名规范，参数之间没有空格
-    if(x>y){  // 运算符两边没有空格
-    return x  // 缺少分号
-    }
-    else{  // else 的位置不规范
-        console.log("test")  // 缺少分号
-    }
+// 使用命名常量替代魔术数字
+const TAX_RATE = 1.08;
+const SERVICE_FEE_RATE = 1.1;
+
+// 使用 const 声明不会被重新赋值的变量
+const firstNumber = 1;
+const secondNumber = 2;
+
+/**
+ * 比较两个数字并返回较大值
+ * @param {number} x - 第一个数字
+ * @param {number} y - 第二个数字
+ * @returns {number} 较大的数字
+ */
+function compareNumbers(x, y) {
+  if (x > y) {
+    return x;
+  } else {
+    console.log('Second number is larger or equal');
+    return y;
+  }
 }
 
-// 全局变量污染
-globalVar = "I am a bad practice"
+// 使用模块作用域变量替代全局变量
+const config = {
+  environment: 'development',
+  feature: 'code-review-example'
+};
 
-// 魔术数字
+/**
+ * 计算含税和服务费的总价
+ * @param {number} items - 原始价格
+ * @returns {number} 最终价格
+ */
 function calculateTotal(items) {
-    return items * 1.08 * 1.1  // 直接使用魔术数字，没有注释说明
+  return items * TAX_RATE * SERVICE_FEE_RATE;
 }
 
-// 嵌套过深
-function deepNesting(arr) {
-    for(let i=0;i<arr.length;i++) {
-        if(arr[i]) {
-            if(arr[i].value) {
-                if(arr[i].value.data) {
-                    return arr[i].value.data
-                }
-            }
-        }
-    }
+/**
+ * 使用可选链和提前返回模式优化深层嵌套
+ * @param {Array} arr - 输入数组
+ * @returns {*} 数据或 null
+ */
+function getNestedData(arr) {
+  if (!arr?.value?.data) {
+    return null;
+  }
+  return arr.value.data;
 }
 
-// 混合使用单引号和双引号
-let str1 = 'hello'
-let str2 = "world"
+// 统一使用单引号
+const greeting = {
+  hello: 'hello',
+  world: 'world'
+};
 
-// 不一致的缩进
-function inconsistentIndentation() {
+/**
+ * 使用一致的缩进（2空格）
+ * @returns {number} 计算结果
+ */
+function calculateSum() {
   const a = 1;
-    const b = 2;
-        return a + b;
+  const b = 2;
+  return a + b;
 }
